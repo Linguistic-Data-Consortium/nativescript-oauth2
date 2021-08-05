@@ -1,14 +1,5 @@
 {
-  "nativescript": {
-    "id": "org.nativescript.democustomprovider",
-    "tns-android": {
-      "version": "5.0.0"
-    },
-    "tns-ios": {
-      "version": "5.0.0"
-    }
-  },
-  "main": "app.js",
+  "main": "./app/app.ts",
   "description": "NativeScript Application",
   "license": "SEE LICENSE IN <your-license-filename>",
   "repository": "<fill-your-repository-here>",
@@ -16,7 +7,7 @@
     "nativescript-theme-core": "^1.0.4",
     "nativescript-unit-test-runner": "^0.3.4",
     "nativescript-oauth2": "file:../src",
-    "tns-core-modules": "^5.1.1"
+    "@nativescript/core": "~8.0.0"
   },
   "devDependencies": {
     "jasmine-core": "^2.5.2",
@@ -25,10 +16,10 @@
     "karma-nativescript-launcher": "^0.4.0",
     "nativescript-css-loader": "~0.26.1",
     "nativescript-dev-typescript": "~0.7.2",
-    "nativescript-dev-webpack": "~0.17.0",
-    "tns-platform-declarations": "^4.2.0",
     "tslint": "~5.4.3",
-    "typescript": "3.1.1"
+    "typescript": "~4.0.0",
+    "@nativescript/types": "6.5.0",
+    "@nativescript/webpack": "~5.0.0-beta.0"
   },
   "readme": "NativeScript Application"
 }

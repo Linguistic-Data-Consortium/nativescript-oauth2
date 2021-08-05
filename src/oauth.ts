@@ -34,6 +34,7 @@ export class TnsOAuthClient {
     providerType: TnsOaProviderType,
     public pkce: boolean = true
   ) {
+    console.log(`Map size is ${tnsOauthProviderMap.providerMap.values().next().value}`);
     this.provider = tnsOauthProviderMap.providerMap.get(providerType);
     if (this.provider) {
       switch (this.provider.options.openIdSupport) {
@@ -244,6 +245,7 @@ export function configureTnsOAuth(providers: TnsOaProvider[]) {
   }
 
   for (let i = 0; i < providers.length; ++i) {
+    console.log(providers[i]);
     tnsOauthProviderMap.addProvider(providers[i].providerType, providers[i]);
   }
 }

@@ -41,6 +41,7 @@ export function getAuthUrlStr(
 
   const retAuthUrlStr =
     provider.authority + provider.authorizeEndpoint + "?" + pararmsStr;
+  console.log(retAuthUrlStr);  
   return retAuthUrlStr;
 }
 
@@ -88,7 +89,7 @@ export function getAccessTokenUrlStr(provider: TnsOaProvider): string {
   } else {
     retStr = provider.authority + provider.tokenEndpoint;
   }
-
+  console.log(retStr);
   return retStr;
 }
 
