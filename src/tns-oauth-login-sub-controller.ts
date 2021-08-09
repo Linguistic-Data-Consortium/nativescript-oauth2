@@ -89,6 +89,7 @@ export class TnsOAuthLoginSubController {
     url: string,
     completion: TnsOAuthClientLoginBlock | TnsOAuthClientLogoutBlock
   ): boolean {
+    console.log(`resumeWithUrl; url is ${url}`)
     if (this.authState) {
       if (this.authState.isLogout) {
         if (url === this.client.provider.options.redirectUri) {

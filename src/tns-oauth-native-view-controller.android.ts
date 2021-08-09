@@ -39,6 +39,7 @@ export class TnsOAuthLoginNativeViewController
     urlScheme?: string,
     completion?: TnsOAuthClientLoginBlock
   ) {
+    console.log("loginWithParametersFrameCompletion called");
     const fullUrl = this.loginController.preLoginSetup(
       frame,
       urlScheme,
@@ -75,6 +76,8 @@ export class TnsOAuthLoginNativeViewController
   }
 
   public resumeWithUrl(url: string): boolean {
+
+    console.log(`resumeWithUrl called; url = ${url}`);
     if (!!url) {
       return this.loginController.resumeWithUrl(
         url,

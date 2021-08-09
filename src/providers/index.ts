@@ -174,10 +174,11 @@ export class TnsOaProviderIdentityServer implements TnsOaProvider {
 
 export declare type ProviderTypeAWS = "aws";
 export interface TnsOaProviderOptionsAWS
-  extends TnsOaProviderOptions{ 
+  extends TnsOaOpenIdProviderOptions{ 
     awsRegion: string,
     poolId: string,
-    poolDomain: string
+    poolDomain: string,
+    loginHost?: string
   }
 export class TnsOaProviderAWS implements TnsOaProvider {
   public options: TnsOaProviderOptionsAWS;
@@ -187,20 +188,29 @@ export class TnsOaProviderAWS implements TnsOaProvider {
   public tokenEndpointBase: string;
   public authorizeEndpoint = "/oauth2/authorize";
   public tokenEndpoint = "/oauth2/token";
-  public cookieDomains = ["amazonaws.com", "amazoncognito.com"];
+  public cookieDomains = ["amazonaws.com", "ldcresearch.org", "mobile.ldcresearch.org", "auth.mobile.ldcresearch.org"];
 
 
   constructor(options: TnsOaProviderOptionsAWS) {
-    const base=`https://${options.poolDomain}.auth.${options.awsRegion}.amazoncognito.com`
+   const base=`https://${options.poolDomain}.auth.${options.awsRegion}.amazoncognito.com`
     this.options = options;
-    //this.authority = `https://cognito-idp.${options.awsRegion}.amazonaws.com/${options.poolId}`;
-    this.authority = base;
+    this.authority = `https://cognito-idp.${options.awsRegion}.amazonaws.com/${options.poolId}`;
     this.tokenEndpointBase = base;
-    console.log(this.authority);
-    console.log(this.tokenEndpointBase);
 
   }
+  public getAuthUrlStr():string {
+    let url = "";
+    const opts = this.options;
+    if (opts.loginHost != null) {
+      url = `${opts.loginHost}/login?response_type=code&client_id=${opts.clientId}&redirect_uri=${opts.redirectUri}`;
+    } else {
+      const b = this.tokenEndpointBase;
+      url = `${b}/login?response_type=code&client_id=${opts.clientId}&redirect_uri=${opts.redirectUri}`;
+    }
 
+
+    return url;
+  }
   public parseTokenResult(jsonData): ITnsOAuthTokenResult {
     return jsonData;
   }

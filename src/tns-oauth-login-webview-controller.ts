@@ -48,6 +48,7 @@ export class TnsOAuthLoginWebViewController
       urlScheme,
       completion
     );
+    console.log("loginWithParametersFrameCompletion was called");
 
     this.openUrlWithParametersCompletion(fullUrl, frame);
   }
